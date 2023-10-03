@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import { Card } from "./Card";
+import { DarkModeContext } from "./DarkModeContext";
+import { DataContext } from "./DataContext";
 
 function App() {
+
+  const { darkMode, switchModes } = useContext(DarkModeContext);
+  const {fetchData} = useContext(DataContext);
+  const styles = {
+    background: darkMode ? 'black' : 'white',
+    color: darkMode ? 'white' : 'black',
+    width: '100vw',
+    height: '100vh'
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={styles}>
+      <Card>
+        hello
+      </Card>
+      <button onClick={switchModes}>switch modes</button>
+      <button onClick={fetchData}>refresh data</button>
     </div>
   );
 }
